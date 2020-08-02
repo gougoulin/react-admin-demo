@@ -14,7 +14,7 @@ function CreateOrder({ sidebarMenu }) {
    */
   const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const [state, setState] = useState({
     counter: 1,

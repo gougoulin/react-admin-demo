@@ -22,10 +22,7 @@ function Home({ sidebarMenu }) {
       </Section>
       <Section>test 1</Section>
       <Section>
-        <form>
-          <input type="text" value={process.env.REACT_APP_API_SPACE} />
-          <input type="text" value={process.env.NODE_ENV} />
-        </form>
+        <h1>hello from main page</h1>
       </Section>
     </div>
   );
