@@ -1,0 +1,386 @@
+// @use "param";
+:root {
+  --primary-color: #bc99bb;
+  --bg-dark: #333;
+  --bg-light: #ddd;
+  --shadow-color: rgba(10, 10, 10, 0.2);
+  --content-bg: #eee;
+  --text-black: #000;
+}
+// @use "common";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+.hidden {
+  display: none;
+}
+.card {
+  box-shadow: 0 1px 2px var(--shadow-color);
+  padding: 10px;
+  border-radius: 0.2em;
+}
+.link__normal {
+  text-decoration: none;
+  color: var(--text-black);
+}
+.link__normal:hover {
+  text-decoration: underline;
+}
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+.flex__end {
+  @include flex(flex-end, center);
+}
+.flex__center {
+  @include flex(center, center);
+}
+.flex__between {
+  @include flex(space-between, center);
+}
+.callforaction {
+  background: var(--primary-color);
+  padding: 0.5em 1em;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: transparent;
+    border: 1px solid var(--bg-light);
+    cursor: pointer;
+  }
+}
+// @use "layout";
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  display: grid;
+  font-family: "Poppins", sans-serif;
+  height: 100%;
+  width: 100%;
+  grid-template-areas:
+    "header header"
+    "aside main";
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: calc(1rem * 0.125 * 30) 1fr;
+}
+
+#root header {
+  grid-area: header;
+  background: var(--primary-color);
+}
+#root aside {
+  grid-area: aside;
+  background: var(--bg-dark);
+  color: var(--content-bg);
+}
+#root main {
+  grid-area: main;
+  background: var(--bg-light);
+  padding: 10px;
+}
+
+// header css setting start
+#root header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+
+  .user__wrap {
+    display: flex;
+    flex-flow: row nowrap;
+
+    .user__avatar,
+    .user__name {
+      padding: 0 10px;
+    }
+
+    .user__avatar {
+      border: 1px solid black;
+      border-radius: 50%;
+    }
+  }
+}
+// header css setting end
+
+// sidebar aside css setting start
+.nav__wrap {
+  list-style-type: none;
+}
+.nav__item {
+  width: 100%;
+  padding: 0.2em 10px;
+  margin-top: 10px;
+}
+.nav__item__link {
+  display: block;
+  width: 100%;
+  color: var(--content-bg);
+  text-decoration: none;
+}
+.nav__item:hover {
+  background: var(--primary-color);
+  cursor: pointer;
+}
+// sidebar aside css setting end
+
+// main content css setting start
+.home__layout {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+}
+.pagepath__title {
+  font-weight: normal;
+  font-size: 1rem;
+}
+// main content css setting end
+
+// section component content css setting start
+.section__wrap {
+  background: var(--content-bg);
+  padding: 10px;
+  margin-top: 10px;
+}
+.section__general__inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  gap: 20px;
+}
+@mixin card__bg($color) {
+  background: $color;
+}
+.card__red {
+  @include card__bg(red);
+}
+.card__yellow {
+  @include card__bg(yellow);
+}
+.card__green {
+  @include card__bg(green);
+}
+.card__purple {
+  @include card__bg(purple);
+}
+.section__header {
+  @include flex(space-between, start);
+  // display: flex;
+  flex-flow: row nowrap;
+  // justify-content: space-around;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+.section__title {
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+.section__order__search__wrap {
+  height: 100%;
+  width: 100%;
+
+  input {
+    width: 20em;
+    height: 2em;
+    border: 1px solid var(--bg-light);
+    border-radius: 0.2em;
+    padding: 0 1em;
+  }
+}
+.section__overflow {
+  overflow: hidden;
+}
+// section component content css setting end
+
+// order page setting start
+.order__item {
+  padding: 8px 0;
+  display: grid;
+  // grid-template-columns: 50px 3fr 50px repeat(3, 1fr) 2fr;
+  grid-template-columns: 26px 50px 35% repeat(auto-fit, minmax(100px, 1fr));
+  // grid-template-rows: 50px;
+  border-bottom: 1px solid var(--shadow-color);
+
+  span {
+    padding: 0 0.5em;
+  }
+}
+.btn__operation {
+  padding: 0 0.3em;
+  text-decoration: none;
+}
+.order__list__item__product {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.order__list__item__nowrap {
+  white-space: nowrap;
+}
+.pagination__item {
+  padding: 0.5em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.itemperpage {
+  // border: 1px solid var(--bg-dark);
+  padding: 0 0.3em;
+  margin-right: 0.5em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.form__inline {
+  display: flex;
+  flex-flow: row wrap;
+  // justify-content: space-around;
+  align-items: center;
+
+  > div {
+    padding-right: 10px;
+
+    > label {
+      padding-right: 4px;
+    }
+  }
+}
+.form__group {
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, 100px);
+  // gap: 8px;
+  // padding: 0 20px 8px 0;
+  display: flex;
+  flex-flow: row nowrap;
+
+  span {
+    padding: 0 4px;
+  }
+}
+.form__group__inline {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  align-items: center;
+
+  > input {
+    border: none;
+    border-bottom: 1px solid var(--bg-light);
+    border-radius: 0.2em;
+    background: transparent;
+    padding: 0.5em;
+    font-size: 1rem;
+
+    &:focus {
+      outline: 1px solid var(--primary-color);
+    }
+  }
+}
+.form__set__inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 5%;
+  justify-self: center;
+  align-items: center;
+}
+// order page setting end
+
+@mixin grid($val) {
+  height: 100%;
+  display: grid;
+  grid-template-rows: $val;
+  gap: 0;
+}
+
+.grid_row_aawa {
+  @include grid(auto auto 1fr auto);
+}
+
+// icon css setting start
+@import "icon";
+// icon css setting end
+
+// main content layout style start
+#neworder__layout {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  label {
+    font-weight: 600;
+  }
+}
+.form__section__title {
+  padding: 0.5em 0;
+  font-weight: 600;
+}
+.form__button {
+  padding: 0.2em 0.5em;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.2em;
+  font-size: 1rem;
+  margin: 0.5em 0;
+  margin-right: 10px;
+
+  &:hover {
+    background: var(--primary-color);
+    cursor: pointer;
+  }
+}
+
+.neworder__textarea__inline {
+  display: grid;
+  grid-template-columns: 80px 1fr 5%;
+  margin-bottom: 10px;
+}
+.neworder__textarea__control {
+  padding-right: 20px;
+  width: calc(100% - 20px);
+  border: 1px solid var(--bg-light);
+  height: 6em;
+  background: transparent;
+  padding: 10px;
+  font-size: 1rem;
+}
+// select input
+.neworder__inline {
+  display: grid;
+  grid-template-columns: 80px 1fr 5%;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.neworder__select__control {
+  border: 1px solid var(--bg-light);
+  padding-right: 20px;
+  width: calc(100% - 20px);
+  font-size: 1rem;
+}
+
+// order view page
+.vieworder__layout {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+// main content layout style end
